@@ -1,21 +1,52 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 .weatherEnvironment{
   width: 90%;
+  height: 25vh;
   justify-content: center;
   background-color: blue;
   margin: 1rem auto;
   display: flex;
+  position: relative;
 }
 
 .siteTitle{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Pacifico', Helvetica, sans-serif;
+  color: aliceblue;
+}
+
+*{
+  font-family: 'Poppins', serif;
+}
+
+
+.background{
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rock {
+  z-index: 1;
+  display: block;
+  position: absolute;
+  bottom: 10%;
+  
+  max-width:245px;
+  max-height:150px;
+  width: auto;
+  height: auto;
 }
 
 nav {
-  border: 2px solid black;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-color: gray;
+  background-color: rgb(74, 74, 74);
   display: flex;
+  font-family: 'Courier New', Courier, monospace;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -42,5 +73,75 @@ nav {
   font-family: Arial, Helvetica, sans-serif; 
   border: 2px solid black;
   
+
+}
+
+.snow, .snow:before, .snow:after {
+  animation: a 6s linear 1e3;
+  background: radial-gradient(#dcdcdc, rgba(154, 154, 200, 0) 9%)0 0/3em 3em;
+  content: "";
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index:8;
+}
+
+.snow:before {
+  animation-duration: 7s
+}
+
+.snow:after {
+  animation-duration: 6s
+}
+
+@keyframes a {
+  to {
+    background-position: 3em 9em
+  }
+}
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  html{
+    background-color: #1f1f1f;
+  }
+  nav{
+    background-color: #161616;
+  }
+  h1, h2{
+    color: aliceblue;
+  }
+  thead, tbody{
+    color:aliceblue;
+  }
+  .conditionsTable{
+    border: 2px solid white;
+  }
+}
+
+
+
+
+
+
+
+
+
+@media (prefers-color-scheme: light){
+  html{
+    background-color: #e7e7e7;
+  }
+  nav{
+    background-color: #363636;
+ 
+  }
+  h1, h2{
+    color: black;
+  }
+
 
 }

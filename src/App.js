@@ -25,7 +25,7 @@ const mockData = {
     "temp_f": 24.6,
     "is_day": 1,
     "condition": {
-      "text": "Patchy rain possible",
+      "text": "Moderate or heavy rain with thunder",
       "icon": "//cdn.weatherapi.com/weather/64x64/day/113.png",
       "code": 1000
     },

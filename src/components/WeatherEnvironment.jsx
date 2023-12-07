@@ -31,7 +31,7 @@ const rockBackground = (season, dayNight)  => {
 const WeatherEnvironment = (props) => {
     let season = getSeason(props.latitude, props.temp);
     
-    if(props.temp > 10){
+   if(props.temp > 9){
         season = 'Spring'
     }
     
@@ -45,15 +45,74 @@ const WeatherEnvironment = (props) => {
     const [rockStatus, setRockStatus] = useState()
     const [message, setMessage] = useState()
     const [isSnowing, setIsSnowing] = useState(false)
-    const [isRaining, setIsRaining] = useState(false)
-    const [isLightning, setIsLightning] = useState(false)
+    //const [isRaining, setIsRaining] = useState(false)
+    //const [isLightning, setIsLightning] = useState(false)
 
-    
-    
+    let clouds = ["Partly cloudy",  "Cloudy",  "Overcast"]
+    let rain = ["Light drizzle", "Patchy light drizzle", "Patchy rain possible", "Patchy light rain", "Light rain", "Moderate rain at times", "Moderate rain", "Heavy rain at times", "Heavy rain", "Light rain shower", "Moderate or heavy rain shower", "Torrential rain shower"]
+    let snow =["Snow" || "Blowing Snow" || "Blizzard", "Light snow", "Patchy light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Light snow showers", "Moderate or heavy snow showers", "Patchy freezing drizzle possible", "Freezing drizzle", "Heavy freezing drizzle", "Light Freezing Rain", "Moderate or heavy freezing rain"]
+    let thunder = ["Patchy light snow with thunder", "Moderate or heavy snow with thunder", "Patchy light rain with thunder" ]
+    let clear = ["Sunny", "Clear"]
+    let fog = ["Fog", "Mist"]
+    let snowThunder = ["Patchy light snow with thunder", "Moderate or heavy snow with thunder"]
+    let rainThunder = ["Moderate or heavy rain with thunder", "Thundery outbreaks possible"]
     useEffect( () =>{
         const dayNight = props.isDay ? "Day" : "Night"
         console.log('-----', dayNight)
         setIsSnowing(false)
+        if(clouds.includes(props.condition)){
+            console.log('theres clourds')
+            
+
+            setBackground(rockBackground(season, dayNight).cloudy)
+            setRockStatus(rockConditions.dry)
+            setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
+
+        } else if(rain.includes(props.condition)){
+            console.log('theres clourds')
+
+            setBackground(rockBackground(season, dayNight).rainy)
+            setRockStatus(rockConditions.rain)
+            setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
+
+        } else if(clear.includes(props.condition)){
+            console.log('theres sun')
+            setBackground(rockBackground(season, dayNight).clear)
+            setRockStatus(rockConditions.dry)
+            setMessage(`"The heat from the sun beams down on your rock, it reminds them of the good old days being formed by heat and pressure underground. Much more interesting then sitting here all day."`)
+
+        } else if(fog.includes(props.condition)){
+            console.log('theres clourds')
+
+            setBackground(rockBackground(season, dayNight).fog)
+            setRockStatus(rockConditions.dry)
+            setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
+
+        } else if(snow.includes(props.condition)){
+            setBackground(rockBackground(season, dayNight).cloudy)
+            setRockStatus(rockConditions.snow)
+            setMessage('snow')
+            setIsSnowing(true)
+        } else if(snowThunder.includes(props.condition)){
+            setBackground(rockBackground(season, dayNight).cloudy)
+            
+            setRockStatus(rockConditions.lightning)
+            setMessage('your rock got struck by lightning, womp womp')
+
+
+
+        } else if(rainThunder.includes(props.condition)){
+            
+            setBackground(rockBackground(season, dayNight).rainy)
+            
+            setRockStatus(rockConditions.lightning)
+            
+            setMessage('your rock got struck by lightning, womp womp')
+
+        }
+        
+        
+        /*
         switch (props.condition) {
             case "Partly cloudy" || "Cloudy" || "Overcast":
                 console.log('cloudy')
@@ -61,6 +120,12 @@ const WeatherEnvironment = (props) => {
                 setRockStatus(rockConditions.dry)
                 setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
                 break;
+
+            case "Light drizzle" || "Patchy light drizzle" || "Patchy rain possible" || "Patchy light rain" || "Light rain" || "Moderate rain at times" || "Moderate rain" || "Heavy rain at times" || "Heavy rain" || "Light rain shower" || "Moderate or heavy rain shower" || "Torrential rain shower":
+                setBackground(rockBackground(season, dayNight).rainy)
+                setRockStatus(rockConditions.rain)
+                setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
+                break;                
                 
                 case "Sunny":
                     setBackground(rockBackground(season, dayNight).clear)
@@ -79,30 +144,27 @@ const WeatherEnvironment = (props) => {
                     setBackground(rockBackground(season, dayNight).cloudy)
                     setRockStatus(rockConditions.snow)
                     setMessage('snow')
-                    //document.getElementById('environment').classList.add("snow")
                     setIsSnowing(true)
                     break;
                 
-                case  "Patchy light snow with thunder" || "Moderate or heavy snow with thunder":
-                    setMessage(`"Your rock was burnt to a crisp by a bolt of lightning. Womp womp :/" `)
+                case  "Patchy light snow with thunder", "Moderate or heavy snow with thunder":
+                    setMessage(`"Your rock was burnt to a crisp by a bolt of lightning. Womp womp :/"`)
                     setRockStatus(rockConditions.lightning)
                     setIsSnowing(true)
                     setBackground(rockBackground(season, dayNight).cloudy)
                     break;
 
-                case "Patchy light rain with thunder" || "Moderate or heavy rain with thunder" || "Thundery outbreaks possible":
+                case "Patchy light rain with thunder", "Moderate or heavy rain with thunder", "Thundery outbreaks possible":
                     setMessage(`"Your lightning was burnt to a crisp by a bolt of lightning. Womp womp :/" `)
                     setRockStatus(rockConditions.lightning)
                     setBackground(rockBackground(season, dayNight).rainy)
-                    setIsRaining(true)
+                    break;
 
-                case "Patchy rain possible" || "Patchy light drizzle" || "Light drizzle" || "Patchy light rain" || "Light rain" || "Moderate rain at times" || "Moderate rain" || "Heavy rain at times" || "Heavy rain" || "Light rain shower" || "Moderate or heavy rain shower" || "Torrential rain shower":
-                    setMessage(`"Your rock is soaked."`)
-                    setBackground(rockBackground(season, dayNight).rainy)
-                    setRockStatus(rockConditions.rain)
-                    setIsRaining(true)
-            } 
-            console.log("background", props.condition)
+
+
+                    
+            }*/ 
+            console.log("condition  ", props.condition)
         }, [season, props])
     
     return (
@@ -111,7 +173,7 @@ const WeatherEnvironment = (props) => {
             <div style={{ marginBottom: "0" }} className="weatherEnvironment" id="environment">
                 <img className="rock" src={rockStatus} />
                 {isSnowing && <div className="snow"></div> }
-                {/*isRaining && <div className="rain"></div>*/}
+                
                 <img className="background" src={background} />
 
             </div>

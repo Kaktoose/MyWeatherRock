@@ -50,7 +50,9 @@ const Warnings = (props) =>{
 
         })}
         <dialog open={open}>
+            <p>{selectedEvent.title}</p>
             <p>{selectedEvent.description}</p>
+            
 
 
             <button onClick={()=>{setOpen(false)}}>Dismiss</button>

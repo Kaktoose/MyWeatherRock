@@ -3,6 +3,9 @@ const CurrentConditions = (props) =>{
     <table cellPadding={"11"} className="conditionsTable">
     <caption style={{textAlign: "center", padding: "0.5rem 0"}}>{props.city}</caption>
     <tbody>
+    <caption style={{textAlign: 'center'}}>{props.currentConditions}</caption>
+   
+    
     <tr >
     <td >&nbsp;Temp</td>
     <td style={{textAlign: "right"}}>&nbsp;{props.temp}°C</td>

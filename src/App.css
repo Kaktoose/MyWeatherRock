@@ -1,7 +1,6 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-.weatherEnvironment{
+.weatherEnvironment {
   width: 90%;
   height: 50vh;
   justify-content: center;
@@ -11,17 +10,26 @@
   position: relative;
 }
 
-.siteTitle{
+.siteTitle {
   font-family: 'Pacifico', Helvetica, sans-serif;
   color: aliceblue;
 }
 
-*{
+* {
   font-family: 'Poppins', serif;
 }
 
+dialog{
+  z-index: 1000;
+}
 
-.background{
+.warningBar{
+  background-color: red;
+  text-align: center;
+}
+
+
+.background {
   position: absolute;
   z-index: 0;
   display: block;
@@ -34,9 +42,9 @@
   display: block;
   position: absolute;
   bottom: 10%;
-  
-  max-width:245px;
-  max-height:150px;
+
+  max-width: 245px;
+  max-height: 150px;
   width: auto;
   height: auto;
 }
@@ -52,31 +60,50 @@ nav {
   align-items: center;
   justify-content: space-around;
 
-  
+
 }
 
-.container{
+.container {
   display: flex;
   justify-content: flex-end;
   margin: 0 10%;
 }
 
 
-.conditionsTable{
+.conditionsTable {
   padding: 0;
-  margin:0;
+  margin: 0;
   width: -moz-fit-content;
   width: fit-content;
- 
+
   display: flex;
   justify-content: flex-end;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   border: 2px solid black;
-  
+
 
 }
+.weatherreaction{
+   margin: 0 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
 
-.snow, .snow:before, .snow:after {
+.belowRockContainer{
+  margin: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+}
+
+
+.snow,
+.snow:before,
+.snow:after {
   animation: a 6s linear 1e3;
   background: radial-gradient(#dcdcdc, rgba(154, 154, 200, 0) 9%)0 0/3em 3em;
   content: "";
@@ -84,7 +111,7 @@ nav {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index:8;
+  z-index: 8;
 }
 
 .snow:before {
@@ -106,19 +133,25 @@ nav {
 
 
 @media (prefers-color-scheme: dark) {
-  html{
+  html {
     background-color: #1f1f1f;
   }
-  nav{
+
+  nav {
     background-color: #161616;
   }
-  h1, h2{
+
+  h1,
+  h2 {
     color: aliceblue;
   }
-  thead, tbody{
-    color:aliceblue;
+
+  thead,
+  tbody {
+    color: aliceblue;
   }
-  .conditionsTable{
+
+  .conditionsTable {
     border: 2px solid white;
   }
 }
@@ -131,17 +164,65 @@ nav {
 
 
 
-@media (prefers-color-scheme: light){
-  html{
+@media (prefers-color-scheme: light) {
+  html {
     background-color: #e7e7e7;
   }
-  nav{
+
+  nav {
     background-color: #363636;
- 
+
   }
-  h1, h2{
+
+  h1,
+  h2 {
     color: black;
   }
 
 
 }
+
+.reactionbuttons{
+  display: inline-flex;
+}
+.material-symbols-outlined {
+  font-size: 50px !important;
+  border-radius: 1000%;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 100
+}
+
+
+
+
+.rain,
+.rain:before,
+.rain:after {
+  animation: rain 3s linear 1e3;
+  background: radial-gradient(#4a70ae, rgba(68, 68, 237, 0) 10%)0 0/2em 4em;
+  content: "";
+  margin: 0;
+  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+}
+
+.rain:before {
+  animation-duration: 1s
+}
+
+.rain:after {
+  animation-duration: 2s
+}
+
+@keyframes rain {
+  to {
+    background-position: 2em 16em
+  }
+}
+

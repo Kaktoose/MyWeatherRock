@@ -23,14 +23,13 @@ const WeatherLikeDislike = (props) => {
     const today0Am = new Date();
     today0Am.setHours(0)
     today0Am.setMinutes(0)
-    const today0AmTimestamp = Timestamp.fromDate(
-        today0Am
-    )
+    const today0AmTimestamp = Timestamp.fromDate(today0Am)
 
-    console.log('date', today0Am)
+    console.log('date', today0AmTimestamp)
  
     async function getPercentage(props) {
-        const q = query(collection(props.db, "Ratings"), where("createdAt", ">", today0AmTimestamp)&& where("location", "==", props.placeName));
+        const q = query(collection(props.db, "Ratings"), where("createdAt", ">", today0AmTimestamp),  where("location", "==", props.placeName));
+        
         const ratingsArray = []
 
         const querySnapshot = await getDocs(q);

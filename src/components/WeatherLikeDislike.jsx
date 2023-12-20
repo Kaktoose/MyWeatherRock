@@ -27,7 +27,7 @@ const WeatherLikeDislike = (props) => {
 
     console.log('date', today0AmTimestamp)
  
-    async function getPercentage(props) {
+    async function getPercentage(props, didLike) {
         const q = query(collection(props.db, "Ratings"), where("createdAt", ">", today0AmTimestamp),  where("location", "==", props.placeName));
         
         const ratingsArray = []
@@ -50,8 +50,15 @@ const WeatherLikeDislike = (props) => {
         const dislikes = ratingsArray.length - likes
        // console.log('dislikes', dislikes)
 
-        setLikePercentage(Math.round(100 * (likes / (likes+dislikes))))
-        setDislikePercentage(Math.round(100 * (dislikes/(likes+dislikes))))
+        if(ratingsArray.length ==0 && didLike == true){
+            setLikePercentage(100)
+        } else if(ratingsArray.length == 0 && didLike == false){
+            setDislikePercentage(100)
+        }else{
+
+            setLikePercentage(Math.round(100 * (likes / (likes+dislikes))))
+            setDislikePercentage(Math.round(100 * (dislikes/(likes+dislikes))))
+        }
   
 
 
@@ -78,7 +85,7 @@ const WeatherLikeDislike = (props) => {
 
 
         });
-        getPercentage(props)
+        await getPercentage(props, didLike)
 
 
 

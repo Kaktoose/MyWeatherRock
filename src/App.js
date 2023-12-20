@@ -20,6 +20,14 @@ const db = getFirestore(firebaseApp);
 const ratingsCollection = collection(db, 'Ratings')
 
 
+
+
+
+
+
+
+
+
 const mockData = {
   "location": {
     "name": "Halifax",
@@ -80,25 +88,8 @@ const mockData = {
     ]
 }
 }
-// Calculate the timestamp for 24 hours ago
-// const twentyFourHoursAgo = new Date();
-// twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24);
-// const twentyFourHoursAgoTimestamp = Timestamp.fromDate(
-//   twentyFourHoursAgo
-//   );
-//   // Perform the query
-//   const ratingsQuery = db.
-//   .collection('Ratings')
-//    // RratingsWplace with your actual collection name
-//   .where('createdAt', '>', twentyFourHoursAgoTimestamp)
-//   .get();
 
 
-
-
-  
-
-  console.log('query', query)
 
 
 const mockAlert= {
@@ -127,6 +118,8 @@ function App() {
   const [dataState, setDataState] = useState()
   const [submittedState, setSubmittedState] = useState(false)
   const [alertState, setAlertState] = useState()
+  const [voteState, setVoteState] = useState()
+
   const [errorState, setErrorState] = useState('No matching location found.')
   async function fetchCurrentWeather(e, inputValue){
       setSubmittedState(true)
@@ -143,6 +136,7 @@ function App() {
         let forecast = await fetchForecast.json();
         setDataState(currentWeatherData)
         setAlertState(forecast)
+        setVoteState(false)
         
 
       } else {
@@ -177,6 +171,8 @@ function App() {
        placeName={dataState.location.name + ', ' + dataState.location.region + ', ' + dataState.location.country} 
       collection={ratingsCollection} 
        db={db}
+       voteState={voteState}
+       setVoteState={setVoteState}
 
        
        /> 

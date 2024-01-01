@@ -9,7 +9,7 @@ import getSeason from './seasons.js';
 import Warnings from './components/Warnings.jsx';
 import WeatherLikeDislike from './components/WeatherLikeDislike.jsx'
 import { query, collection, where, getDocs, getFirestore, Timestamp,  } from 'firebase/firestore'
-
+import RockViews from './components/RockViews.jsx';
 
 import { initializeApp } from "firebase/app";
 import { FIREBASE_CONFIG } from './secrets.js';
@@ -18,7 +18,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 const firebaseApp = initializeApp(FIREBASE_CONFIG);
 const db = getFirestore(firebaseApp);
 const ratingsCollection = collection(db, 'Ratings')
-
+const viewCollection = collection(db, "Views")
 
 
 
@@ -119,6 +119,7 @@ function App() {
   const [submittedState, setSubmittedState] = useState(false)
   const [alertState, setAlertState] = useState()
   const [voteState, setVoteState] = useState()
+  
 
   const [errorState, setErrorState] = useState('No matching location found.')
   async function fetchCurrentWeather(e, inputValue){
@@ -160,6 +161,7 @@ function App() {
     {!submittedState ? 
     <h1 style={{textAlign: "center"}} >No location entered!</h1> 
     : dataState ? 
+    <>
     <div className='belowRockContainer'>
       <CurrentConditions
        temp={ dataState.current.temp_c } 
@@ -176,7 +178,14 @@ function App() {
 
        
        /> 
-       </div >: 
+       </div >
+       <RockViews 
+       db={db}
+       placeName={dataState.location.name + ', ' + dataState.location.region + ', ' + dataState.location.country} 
+       collection={viewCollection}
+       />
+       </>
+       : 
        <h1 style={{textAlign: "center"}}>Loading...</h1>
        
        }

@@ -52,7 +52,7 @@ const WeatherEnvironment = (props) => {
     //const [isLightning, setIsLightning] = useState(false)
     let clouds = ["Partly cloudy",  "Cloudy",  "Overcast"]
     let rain = ["Patchy light drizzle", "Light drizzle",  "Patchy rain possible", "Patchy light rain", "Light rain", "Moderate rain at times", "Moderate rain", "Heavy rain at times", "Heavy rain", "Light rain shower", "Moderate or heavy rain shower", "Torrential rain shower", "Moderate or heavy sleet", "Light sleet showers", "Patchy sleet possible",]
-    let snow =["Snow" || "Blowing Snow" || "Blizzard", "Light snow", "Patchy light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Light snow showers", "Moderate or heavy snow showers", "Patchy freezing drizzle possible", "Freezing drizzle", "Heavy freezing drizzle", "Light Freezing Rain", "Moderate or heavy freezing rain",  "Ice pellets", "Light showers of ice pellets", "Moderate or heavy showers of ice pellets" ]
+    let snow =["Snow" || "Blowing snow" || "Blizzard", "Light snow", "Patchy light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Light snow showers", "Moderate or heavy snow showers", "Patchy freezing drizzle possible", "Freezing drizzle", "Heavy freezing drizzle", "Light Freezing Rain", "Moderate or heavy freezing rain",  "Ice pellets", "Light showers of ice pellets", "Moderate or heavy showers of ice pellets" ]
     let thunder = ["Patchy light snow with thunder", "Moderate or heavy snow with thunder", "Patchy light rain with thunder" ]
     let clear = ["Sunny", "Clear"]
     let fog = ["Fog", "Mist", "Freezing fog"]

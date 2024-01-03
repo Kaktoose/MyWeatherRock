@@ -181,7 +181,7 @@ body{
   
   
   .Footer {
-    font-size: min(max(2vw, 2vw), 30px);
+    font-size: min(max(3vw, 3vw), 30px);
     display: flex;
     flex-direction: row;
     align-items: center;

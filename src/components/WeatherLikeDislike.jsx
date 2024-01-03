@@ -8,111 +8,81 @@ import WeatherEnvironment from './WeatherEnvironment';
 
 
 const WeatherLikeDislike = (props) => {
-    const [likePercentage, setLikePercentage] = useState()
-    const [dislikePercentage, setDislikePercentage] = useState()
-
-
-    const twentyFourHoursAgo = new Date();
-    twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24);
-    const twentyFourHoursAgoTimestamp = Timestamp.fromDate(
-        twentyFourHoursAgo
-    );
-
-
-
     const today0Am = new Date();
-    today0Am.setHours(0)
-    today0Am.setMinutes(0)
-    const today0AmTimestamp = Timestamp.fromDate(today0Am)
+    today0Am.setHours(0);
+    today0Am.setMinutes(0);
+    const today0AmTimestamp = Timestamp.fromDate(today0Am);
+    
+    const q = query(collection(props.db, "Ratings"), where("createdAt", ">", today0AmTimestamp), where("location", "==", props.placeName));
 
-    console.log('date', today0AmTimestamp)
-
-    async function getPercentage(props, didLike) {
-
-
-
-
-
-
-
-    }
-
-    const ratingsArray = []
+    const [querySnapshot, loading, error] = useCollection(q);
+    const [likePercentage, setLikePercentage] = useState(0)
+    const [dislikePercentage, setDislikePercentage] = useState(0)
+    const [votedCity, setVotedCity] = useState('');
+    const [didCalculate, setDidCalculate] = useState(false)
+    
 
     useEffect(() => {
-        
-        
-        
-        console.log(ratingsArray)
-        
-        
 
-        
-        
-        
-    }, [props.voteState])
-    
-    
-    
-    
-    
-    const [ratings, loading, error] = useCollection(props.collection);
-    
-    
+        if (votedCity !== props.placeName && props.voteState == true && loading === false) {
+            console.log(' querysnapshot', querySnapshot)
+            const ratingsArray = querySnapshot.docs.map((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data())
+                return doc.data().didLike;
+
+            });
+            console.log(ratingsArray)
+            if (ratingsArray) {
+                const likes = ratingsArray.filter(Boolean).length
+                const dislikes = ratingsArray.length - likes
+
+                setLikePercentage(100 * (likes / (likes + dislikes)))
+                setDislikePercentage(100 * (dislikes / (likes + dislikes)))
+                setVotedCity(props.placeName);
+            }
+        }
+
+    }, [props.voteState, votedCity, props.placeName, didCalculate, loading, querySnapshot])
+
+
+
+
+
+
+
     const handleLike = async (didLike) => {
-        s
+
         addDoc(props.collection, {
             createdAt: serverTimestamp(),
             didLike: didLike,
             location: props.placeName
-            
-            
-        });
-        
-        const q = query(collection(props.db, "Ratings"), where("createdAt", ">", today0AmTimestamp), where("location", "==", props.placeName));
-        const querySnapshot = await getDocs(q);
-        console.log(querySnapshot)
-         querySnapshot.forEach((doc)  => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data())
-             ratingsArray.push(doc.data().didLike)
+
 
         });
-        console.log(ratingsArray)
-        const likes = ratingsArray.filter(Boolean).length
-        console.log('likes', likes)
-        const dislikes = ratingsArray.length - likes
-        console.log('dislikes', dislikes)
-        
-        
-        
-         setLikePercentage(Math.round(100 * (likes / (likes + dislikes))))
-         setDislikePercentage(Math.round(100 * (dislikes / (likes + dislikes))))
-         props.setVoteState(true)
 
-        
+        props.setVoteState(true)
 
 
     }
 
 
-    useEffect(() => {
-
-    })
 
 
     return (
         <div className='weatherreaction'>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            {!props.voteState ? <>
-                <h2 style={{ 'text-align': 'center' }}>What do you think of the weather?</h2>
+            {props.voteState === false
+                ? <>
+                    <h2 style={{ 'text-align': 'center' }}>What do you think of the weather?</h2>
 
 
-                <div className='buttonclass'>
+                    <div className='buttonclass'>
 
-                    <button onClick={() => { handleLike(true) }}><span class=" reactionbutton material-symbols-outlined ">thumb_up</span></button>
-                    <button onClick={() => { handleLike(false) }}><span class=" reactionbutton material-symbols-outlined">thumb_down</span></button>
-                </div> </> :
+                        <button onClick={() => { handleLike(true) }}><span class=" reactionbutton material-symbols-outlined ">thumb_up</span></button>
+                        <button onClick={() => { handleLike(false) }}><span class=" reactionbutton material-symbols-outlined">thumb_down</span></button>
+                    </div> </>
+                :
                 <table>
                     <tbody>
                         <tr>

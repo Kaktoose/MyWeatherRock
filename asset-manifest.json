@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/MyWeatherRock/static/css/main.494b4fbf.css",
-    "main.js": "/MyWeatherRock/static/js/main.565c7185.js",
+    "main.js": "/MyWeatherRock/static/js/main.9a83c62c.js",
     "static/js/787.e6406d88.chunk.js": "/MyWeatherRock/static/js/787.e6406d88.chunk.js",
     "index.html": "/MyWeatherRock/index.html",
     "main.494b4fbf.css.map": "/MyWeatherRock/static/css/main.494b4fbf.css.map",
-    "main.565c7185.js.map": "/MyWeatherRock/static/js/main.565c7185.js.map",
+    "main.9a83c62c.js.map": "/MyWeatherRock/static/js/main.9a83c62c.js.map",
     "787.e6406d88.chunk.js.map": "/MyWeatherRock/static/js/787.e6406d88.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.494b4fbf.css",
-    "static/js/main.565c7185.js"
+    "static/js/main.9a83c62c.js"
   ]
 }

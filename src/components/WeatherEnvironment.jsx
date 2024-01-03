@@ -1,6 +1,6 @@
 import CurrentConditions from "./CurrentConditions";
 
-import getSeason from "/seasons";
+import getSeason from "../seasons";
 import { useState, useEffect } from 'react'
 
 const rockConditions = {

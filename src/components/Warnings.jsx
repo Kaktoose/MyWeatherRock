@@ -15,7 +15,6 @@ const Warnings = (props) =>{
 
         let alerts = []
         
-        console.log(props.alerts)
         props.alerts.forEach(alert => {
             alerts.push({
                 'title': alert.headline,

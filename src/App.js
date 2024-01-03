@@ -111,10 +111,8 @@ function App() {
   async function fetchCurrentWeather(e, inputValue){
       setSubmittedState(true)
       e.preventDefault()
-      console.log(inputValue)
       let fetchCurrentWeatherData = await fetch(`https://api.weatherapi.com/v1/current.json?key=${keys.WEATHER_API}&q=${inputValue}&alerts=yes`)
       let currentWeatherData = await fetchCurrentWeatherData.json();
-      console.log(currentWeatherData)
       if(currentWeatherData.current) {
         
         

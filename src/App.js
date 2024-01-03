@@ -7,7 +7,7 @@ import { keys } from "./keys"
 import CurrentConditions from './components/CurrentConditions';
 import getSeason from './seasons.js';
 import Warnings from './components/Warnings.jsx';
-
+import Footer from './components/Footer.jsx';
 
 
 
@@ -134,6 +134,7 @@ function App() {
 
 
   return (
+    <>
     <body>
 
     <SiteHeader fetchCurrentWeather = { fetchCurrentWeather } />
@@ -161,6 +162,10 @@ function App() {
        
        }
     </body> 
+
+       
+       <Footer />
+       </>
     );
 
     

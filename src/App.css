@@ -108,6 +108,7 @@ nav {
 }
 
 
+
 .snow,
 .snow:before,
 .snow:after {
@@ -139,7 +140,6 @@ nav {
 
 
 
-@media (prefers-color-scheme: dark) {
   html {
     background-color: #1f1f1f;
   }
@@ -161,33 +161,36 @@ nav {
   .conditionsTable {
     border: 2px solid white;
   }
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  .Footer {
+    font-size: min(max(2vw, 2vw), 30px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;   /* Height of the footer */
+    background: #161616;
+ 
 }
 
 
-
-
-
-
-
-
-
-@media (prefers-color-scheme: light) {
-  html {
-    background-color: #e7e7e7;
-  }
-
-  nav {
-    background-color: #363636;
-
-  }
-
-  h1,
-  h2 {
-    color: black;
-  }
-
-
-}
 
 .reactionbuttons{
   display: inline-flex;

@@ -25,3 +25,6 @@ yarn-error.log*
 #api keys
 keys.js
 
+*.cache
+
+

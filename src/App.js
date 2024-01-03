@@ -8,11 +8,20 @@ import CurrentConditions from './components/CurrentConditions';
 import getSeason from './seasons.js';
 import Warnings from './components/Warnings.jsx';
 import Footer from './components/Footer.jsx';
+import {FIREBASE_CONFIG} from './secrets.js'
+
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
+import { getAnalytics, logEvent } from "firebase/analytics";
+
+const app = initializeApp(FIREBASE_CONFIG);
+const db = getFirestore(app);
 
 
+const analytics = getAnalytics(app);
 
-
-
+logEvent(analytics, 'page_view');
 
 
 const mockData = {

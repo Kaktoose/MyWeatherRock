@@ -74,7 +74,7 @@ const WeatherEnvironment = (props) => {
 
             
             setBackground(rockBackground(season, dayNight).rainy)
-            setMessage(`"Your rock has taken to sitting in the rain, I guess it's just their thing."`)
+            setMessage(`"Your rock has taken to sitting in the rain, your rock is now wet. :/"`)
             setRockStatus(rockConditions.rain)
             setIsRaining(true)
         } else if(clear.includes(props.condition)){
@@ -88,12 +88,12 @@ const WeatherEnvironment = (props) => {
             
             setBackground(rockBackground(season, dayNight).fog)
             setRockStatus(rockConditions.dry)
-            setMessage(`"Your rock sits in the fog, it has absolutely zero effect on it's life."`)
+            setMessage(`"Your rock sits in the fog, alone..."`)
             setIsRaining(false)
         } else if(snow.includes(props.condition)){
             setBackground(rockBackground(season, dayNight).cloudy)
             setRockStatus(rockConditions.snow)
-            setMessage('Your rock fears of becoming the eye of a snowman')
+            setMessage(`"Your rock fears of becoming the eye of a snowman"`)
             setIsSnowing(true)
             setIsRaining(false)
         } else if(snowThunder.includes(props.condition)){

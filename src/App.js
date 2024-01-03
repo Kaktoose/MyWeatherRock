@@ -117,7 +117,7 @@ function App() {
 
 
 
-      let fetchForecast = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${keys.WEATHER_API}&q=${inputValue}&days=1&aqi=no&alerts=yes`)
+      let fetchForecast = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${keys.WEATHER_API}&q=${inputValue}&days=1&aqi=no&alerts=yes`)
       let forecast = await fetchForecast.json();
       setDataState(currentWeatherData)
       setAlertState(forecast)

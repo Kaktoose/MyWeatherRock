@@ -4,21 +4,21 @@ import getSeason from "../seasons";
 import { useState, useEffect } from 'react'
 
 const rockConditions = {
-    'rain': '/assets/rock-rain.png',
-    'dry': '/assets/rock-base.png',
-    'snow': '/assets/rock-snow.png',
-    'lightning': '/assets/rock-lightning.png',
-    'rainfallWarning': '/assets/warning/rain.png',
-    'snowWarning': '/assets/warning/snowWarning.png'
+    'rain': 'assets/rock-rain.png',
+    'dry': 'assets/rock-base.png',
+    'snow': 'assets/rock-snow.png',
+    'lightning': 'assets/rock-lightning.png',
+    'rainfallWarning': 'assets/warning/rain.png',
+    'snowWarning': 'assets/warning/snowWarning.png'
 }
 
 
 const rockBackground = (season, dayNight)  => {
     return{
-    'clear': `/assets/atmosphere/${season}/clear${dayNight}.png`,
-    'cloudy': `/assets/atmosphere/${season}/cloudy${dayNight}.png`,
-    'rainy': `/assets/atmosphere/${season}/raining${dayNight}.png`,
-    'fog': `/assets/atmosphere/${season}/fog${dayNight}.png`
+    'clear': `assets/atmosphere/${season}/clear${dayNight}.png`,
+    'cloudy': `assets/atmosphere/${season}/cloudy${dayNight}.png`,
+    'rainy': `assets/atmosphere/${season}/raining${dayNight}.png`,
+    'fog': `assets/atmosphere/${season}/fog${dayNight}.png`
     
     }
 

@@ -32,7 +32,6 @@ const rockBackground = (season, dayNight)  => {
 
 const WeatherEnvironment = (props) => {
     let season = getSeason(props.latitude, props.temp);
-    console.log('warning', props.warning)
     
    if(props.temp > 9){
         season = 'Spring'
@@ -40,9 +39,7 @@ const WeatherEnvironment = (props) => {
     
     
     
-    console.log('season:', season);
-    console.log(props.temp)
-    console.log(props.latitude)
+
     
     const [background, setBackground] = useState();
     const [rockStatus, setRockStatus] = useState()
@@ -59,17 +56,14 @@ const WeatherEnvironment = (props) => {
     let snowThunder = ["Patchy light snow with thunder", "Moderate or heavy snow with thunder"]
     let rainThunder = ["Moderate or heavy rain with thunder", "Thundery outbreaks possible"]
    
-    console.log('-------', rain.includes(props.condition))
 
     useEffect( () =>{
         const dayNight = props.isDay ? "Day" : "Night"
-        console.log('-----', dayNight)
         setIsSnowing(false)
 
         
         
         if(clouds.includes(props.condition)){
-            console.log('theres clourds')
             
             
             setBackground(rockBackground(season, dayNight).cloudy)
@@ -77,20 +71,20 @@ const WeatherEnvironment = (props) => {
             setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
             setIsRaining(false)
         } else if(rain.includes(props.condition)){
-            console.log('theres rain')
+
             
             setBackground(rockBackground(season, dayNight).rainy)
             setMessage(`"Your rock has taken to sitting in the rain, I guess it's just their thing."`)
             setRockStatus(rockConditions.rain)
             setIsRaining(true)
         } else if(clear.includes(props.condition)){
-            console.log('theres sun')
+
             setBackground(rockBackground(season, dayNight).clear)
             setRockStatus(rockConditions.dry)
             setMessage(`"It would be a shame to take this clear day for granite"`)
             setIsRaining(false)
         } else if(fog.includes(props.condition)){
-            console.log('theres clourds')
+
             
             setBackground(rockBackground(season, dayNight).fog)
             setRockStatus(rockConditions.dry)
@@ -178,8 +172,7 @@ const WeatherEnvironment = (props) => {
 
                     
             }*/ 
-            console.log("condition  ", props.condition)
-            console.log('warnings', props.warning)
+       
         }, [season, props])
     
     return (

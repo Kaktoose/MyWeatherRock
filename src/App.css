@@ -179,6 +179,39 @@ td {
 }
 
 
+.starButton {
+  margin: 0.5rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #1f1f1f;
+  color:aliceblue;
+  border:#1f1f1f solid 5px;
+
+}
+
+
+.starButtonTrue {
+  margin: 0.5rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #1f1f1f;
+  color:yellow;
+  border:#1f1f1f solid 5px;
+
+}
+
+
+.yellow{
+  color: yellow;
+}
+
+.white{
+  color:aliceblue;
+}
+
+
+
+
 span.conditionLists {
   font-weight: bold;
 }

@@ -2,7 +2,7 @@ import './App.css';
 import WeatherEnvironment from './components/WeatherEnvironment';
 import SiteHeader from './components/SiteHeader'
 import Test from './components/WeatherEnvironment'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { keys } from "./keys"
 import CurrentConditions from './components/CurrentConditions';
 import getSeason from './seasons.js';
@@ -119,7 +119,10 @@ function App() {
   const [errorState, setErrorState] = useState('No matching location found.')
   async function fetchCurrentWeather(e, inputValue) {
     setSubmittedState(true)
-    e.preventDefault()
+    if(e){
+
+      e.preventDefault()
+    }
     let fetchCurrentWeatherData = await fetch(`https://api.weatherapi.com/v1/current.json?key=${keys.WEATHER_API}&q=${inputValue}&alerts=yes`)
     let currentWeatherData = await fetchCurrentWeatherData.json();
     if (currentWeatherData.current) {
@@ -141,22 +144,34 @@ function App() {
 
   }
 
+  useEffect(() => {
+    const defaultCity = localStorage.getItem('defaultCity');
+    if (defaultCity) {
+      fetchCurrentWeather(null, defaultCity); // Pass null for the event parameter
+    }
+  }, []);
+
+
+
+
 
   return (
     <>
       <body >
 
-        <SiteHeader fetchCurrentWeather={fetchCurrentWeather} />
+        <SiteHeader fetchCurrentWeather={fetchCurrentWeather} datastate={dataState} />
         {alertState && alertState.alerts.alert[0]?.event[0] ? <Warnings alerts={alertState.alerts.alert} /> : <div></div>}
 
         {/* to use api, replace mockData with dataState */}
         {dataState && <WeatherEnvironment temp={dataState.current.temp_c} warning={alertState.alerts.alert[0]?.event.toUpperCase() || 'none'} latitude={dataState.location.lat} isDay={dataState.current.is_day} condition={dataState.current.condition.text} city={dataState.location.name + ", " + dataState.location.region} />}
-        {!submittedState ?
+        {
+        !submittedState ?
           <h1 style={{ textAlign: "center", minHeight: "calc(100vh - 100px - 80px)" }} >No location entered!</h1>
-          : dataState ?
+          :   dataState ?
             <>
               <div className='  '>
                 <CurrentConditions
+                city={dataState.location.name + ", " + dataState.location.region}
                   temp={dataState.current.temp_c}
                   feelslike={dataState.current.feelslike_c}
                   humidity={dataState.current.humidity}

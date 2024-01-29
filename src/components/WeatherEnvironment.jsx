@@ -28,18 +28,17 @@ const rockBackground = (season, dayNight)  => {
 }
 
 
-
-
 const WeatherEnvironment = (props) => {
     let season = getSeason(props.latitude, props.temp);
     
    if(props.temp > 9){
-        season = 'Spring'
+       season = 'Spring'
     }
     
     
     
 
+    
     
     const [background, setBackground] = useState();
     const [rockStatus, setRockStatus] = useState()
@@ -118,6 +117,52 @@ const WeatherEnvironment = (props) => {
         
         }  else if(props.warning.includes('SNOW') || props.warning.includes('BLIZZARD') || props.warning.includes('WINTER') ){
             setRockStatus(rockConditions.snowWarning)
+        }
+
+        if(props.condition.includes('rain')){
+            setBackground(rockBackground(season, dayNight).rainy)
+            setMessage(`"Your rock has taken to sitting in the rain, your rock is now wet. :/"`)
+            setRockStatus(rockConditions.rain)
+            setIsRaining(true)
+
+        }
+        if(props.condition.includes('Rain')){
+            setBackground(rockBackground(season, dayNight).rainy)
+            setMessage(`"Your rock has taken to sitting in the rain, your rock is now wet. :/"`)
+            setRockStatus(rockConditions.rain)
+            setIsRaining(true)
+
+        }
+        if(props.condition.includes('RAIN')){
+            setBackground(rockBackground(season, dayNight).rainy)
+            setMessage(`"Your rock has taken to sitting in the rain, your rock is now wet. :/"`)
+            setRockStatus(rockConditions.rain)
+            setIsRaining(true)
+
+        }
+        if(props.condition.includes('snow')){
+            setBackground(rockBackground(season, dayNight).cloudy)
+            setRockStatus(rockConditions.snow)
+            setMessage(`"Your rock fears of becoming the eye of a snowman"`)
+            setIsSnowing(true)
+            setIsRaining(false)
+
+        }
+        if(props.condition.includes('Snow')){
+            setBackground(rockBackground(season, dayNight).cloudy)
+            setRockStatus(rockConditions.snow)
+            setMessage(`"Your rock fears of becoming the eye of a snowman"`)
+            setIsSnowing(true)
+            setIsRaining(false)
+
+        }
+        if(props.condition.includes('SNOW')){
+            setBackground(rockBackground(season, dayNight).cloudy)
+            setRockStatus(rockConditions.snow)
+            setMessage(`"Your rock fears of becoming the eye of a snowman"`)
+            setIsSnowing(true)
+            setIsRaining(false)
+
         }
         
         /*

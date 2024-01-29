@@ -155,13 +155,20 @@ function App() {
           <h1 style={{ textAlign: "center", minHeight: "calc(100vh - 100px - 80px)" }} >No location entered!</h1>
           : dataState ?
             <>
-              <div className='belowRockContainer'>
+              <div className='  '>
                 <CurrentConditions
                   temp={dataState.current.temp_c}
                   feelslike={dataState.current.feelslike_c}
                   humidity={dataState.current.humidity}
                   windspeed={dataState.current.wind_kph}
-                  currentConditions={dataState.current.condition.text} />
+                  currentConditions={dataState.current.condition.text} 
+                  winddirection={dataState.current.wind_dir}
+                  visibility={dataState.current.vis_km}
+                  tempF={dataState.current.temp_f}
+                  feelslikeF={dataState.current.feelslike_f}
+                  windspeedM={dataState.current.wind_mph}
+                  wind
+                  />
 
               </div >
 

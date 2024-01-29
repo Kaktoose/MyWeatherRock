@@ -4,6 +4,7 @@
   width: 90%;
   height: 50vh;
   justify-content: center;
+
   background-color: blue;
   margin: 1rem auto;
   display: flex;
@@ -19,20 +20,20 @@
   font-family: 'Poppins', serif;
 }
 
-dialog{
+dialog {
   z-index: 1000;
 }
 
-.warningBar{
+.warningBar {
   background-color: red;
   text-align: center;
 }
 
 
-.views{
+.views {
   text-align: center;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 
 
@@ -70,17 +71,13 @@ nav {
 
 }
 
-.container {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 10%;
-}
+.container {}
 
 
 .conditionsTable {
-  
+
   margin: 0 0 65px 0;
-  
+
   width: -moz-fit-content;
   width: fit-content;
 
@@ -91,24 +88,29 @@ nav {
 
 
 }
-.weatherreaction{
-   margin: 0 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-}
 
-.belowRockContainer{
-  margin: 30px;
+.weatherreaction {
+  margin: 0 10%;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.belowRockContainerFlex {
+  display: flex;
+  margin: auto;
+  justify-content: center;
 }
 
 
+.belowRockContainer {
+  margin: auto;
+  background-color: #161616;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  width: 90%;
+}
 
 .snow,
 .snow:before,
@@ -141,34 +143,80 @@ nav {
 
 
 
-  html {
-    background-color: #1f1f1f;
-    padding:0;
-    margin:0;
-  }
+html {
+  background-color: #1f1f1f;
+  padding: 0;
+  margin: 0;
+}
 
-  nav {
-    background-color: #161616;
-  }
+nav {
+  background-color: #161616;
+}
 
-  h1,
-  h2 {
-    color: aliceblue;
-  }
-
-  thead,
-  tbody {
-    color: aliceblue;
-  }
-
-  .conditionsTable {
-    border: 2px solid white;
-  }
+td {
+  padding: 3vh 10vw;
+  font-size: max(1.4vw, min(15px, 150px));
+}
 
 
+#lists {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: aliceblue;
+
+}
 
 
-body{
+.unitButton {
+  margin: 0.5rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #1f1f1f;
+  color:aliceblue;
+  border:#1f1f1f solid 5px;
+
+}
+
+
+span.conditionLists {
+  font-weight: bold;
+}
+
+
+.conditionLists {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 4rem;
+  text-align: center;
+
+}
+
+li.conditionLists>ul {
+  padding: 0;
+  text-align: center;
+
+}
+
+
+h1,
+h2 {
+  color: aliceblue;
+}
+
+thead,
+tbody {
+  color: #161616;
+}
+
+.conditionsTable {
+  border: 2px solid white;
+}
+
+
+
+
+body {
   position: relative;
   min-height: calc(100vh - 60px);
 }
@@ -176,40 +224,42 @@ body{
 
 
 
-  
-  
-  
-  
-  .Footer {
-    font-size: min(max(3vw, 3vw), 30px);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    height: 60px;   /* Height of the footer */
-    background: #161616;
-    
- 
+
+
+
+
+.Footer {
+  font-size: min(max(3vw, 3vw), 30px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /* Height of the footer */
+  background: #161616;
+
+
 }
 
 
 
-.reactionbuttons{
+.reactionbuttons {
   display: inline-flex;
 }
+
 .material-symbols-outlined {
   font-size: 50px !important;
   border-radius: 1000%;
   font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 100
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 100
 }
 
 
@@ -222,7 +272,7 @@ body{
   background: radial-gradient(#4a70ae, rgba(68, 68, 237, 0) 10%)0 0/2em 4em;
   content: "";
   margin: 0;
-  
+
   position: absolute;
   width: 100%;
   height: 100%;

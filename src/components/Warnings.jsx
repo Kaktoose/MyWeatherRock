@@ -48,7 +48,7 @@ const Warnings = (props) =>{
         )
 
         })}
-        <dialog open={open}>
+        <dialog style={{'width': '90%', 'borderRadius': '10px'}} open={open}>
             <p>{selectedEvent.title}</p>
             <p>{selectedEvent.description}</p>
             

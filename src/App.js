@@ -172,6 +172,8 @@ function App() {
               <div className='  '>
                 <CurrentConditions
                 city={dataState.location.name + ", " + dataState.location.region}
+                justcity={dataState.location.name}
+
                   temp={dataState.current.temp_c}
                   feelslike={dataState.current.feelslike_c}
                   humidity={dataState.current.humidity}

@@ -7,20 +7,6 @@ const [metricState, setMetricState] = useState(true)
 const [isStarButtonYellow, setIsStarButtonYellow] = useState(false);
 
 
-useEffect(() => {
-    // Retrieve the default city from localStorage
-    const defaultCity = localStorage.getItem('defaultCity');
-
-    // Check if prop.city is equal to the default city from localStorage
-    if (props.city === defaultCity) {
-      setIsStarButtonYellow(true);
-      
-    } else {
-        setIsStarButtonYellow(false);
-     
-    }
-  }, [props.city]);
-
 
 
 function setUnits(){
@@ -43,7 +29,7 @@ function setUnits(){
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <button type="button" className="unitButton" onClick={setUnits}>°C/°F</button>
-<button type="button"  id="starButton" onClick={() =>{ localStorage.clear("defaultCity"); localStorage.setItem("defaultCity", props.city); setIsStarButtonYellow(true)}} className="starButton"  ><span className="fa fa-star" style={{ "color": "aliceBlue", 'margin': "0"}}></span></button>
+<button type="button"  id="starButton" onClick={() =>{ localStorage.clear("defaultCity"); localStorage.setItem("defaultCity", props.city); alert(`Default location set to ${props.justcity}`)}} className="starButton"  ><span  className="fa fa-star" style={{ "color": "aliceBlue", 'margin': "0"}}></span></button>
 
 
         

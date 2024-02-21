@@ -2,6 +2,7 @@ import './App.css';
 import WeatherEnvironment from './components/WeatherEnvironment';
 import SiteHeader from './components/SiteHeader'
 import Test from './components/WeatherEnvironment'
+import PatchNotes from './components/PatchNotes.jsx';
 import { useState, useEffect } from 'react'
 import { keys } from "./keys"
 import CurrentConditions from './components/CurrentConditions';
@@ -159,6 +160,7 @@ function App() {
     <>
       <body >
 
+        <PatchNotes />  
         <SiteHeader fetchCurrentWeather={fetchCurrentWeather} datastate={dataState} />
         {alertState && alertState.alerts.alert[0]?.event[0] ? <Warnings alerts={alertState.alerts.alert} /> : <div></div>}
 

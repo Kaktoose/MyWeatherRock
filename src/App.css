@@ -199,6 +199,7 @@ td {
 }
 
 
+
 .unitButton {
   margin: 0.5rem 0.5rem;
   font-size: 1rem;
@@ -329,6 +330,9 @@ body {
 
 
 
+
+
+
 .rain,
 .rain:before,
 .rain:after {
@@ -355,4 +359,25 @@ body {
   to {
     background-position: 2em 16em
   }
+}
+
+
+.forecastTable{
+  background-color: #161616;
+  border: 0.5rem solid #1f1f1f;
+}
+
+
+.forecastTable * {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  color: aliceblue;
+  text-align: center;
+  justify-content: center;
+}
+
+.dailyForecast{
+  display: flex;
+  background: #161616;
 }

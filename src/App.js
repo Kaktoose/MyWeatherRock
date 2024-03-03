@@ -130,7 +130,7 @@ function App() {
 
 
 
-      let fetchForecast = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${keys.WEATHER_API}&q=${inputValue}&days=1&aqi=no&alerts=yes`)
+      let fetchForecast = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${keys.WEATHER_API}&q=${inputValue}&days=5&aqi=no&alerts=yes`)
       let forecast = await fetchForecast.json();
       setDataState(currentWeatherData)
       setAlertState(forecast)
@@ -186,7 +186,7 @@ function App() {
                   tempF={dataState.current.temp_f}
                   feelslikeF={dataState.current.feelslike_f}
                   windspeedM={dataState.current.wind_mph}
-                  wind
+                  forecast={alertState}
                   />
 
               </div >

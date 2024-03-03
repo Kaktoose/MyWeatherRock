@@ -34,6 +34,10 @@ const WeatherEnvironment = (props) => {
    if(props.temp > 9){
        season = 'Spring'
     }
+
+    if(props.temp < -5){
+        season = 'Winter'
+    }
     
     
     

@@ -5,7 +5,7 @@ const Footer = () =>{
         <footer className="Footer">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         
-            <span style={{ "color": "aliceBlue", 'margin': "10px"}}>V1.2.0</span>
+            <span style={{ "color": "aliceBlue", 'margin': "10px"}}>V1.3.0</span>
             <span style={{ "color": "aliceBlue", 'margin': "10px"}}>© 2024 MyWeatherRock</span>
             <span class="fa fa-github" style={{ "color": "aliceBlue", 'margin': "10px"}}><a style={{'fontSize': 'min(max(3vw, 2vw), 30px)', 'textDecoration': "none", 'color': 'aliceBlue'}} href="https://github.com/Kaktoose/MyWeatherRock/">&#32; GitHub</a></span>
 

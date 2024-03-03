@@ -139,7 +139,7 @@ nav {
   margin: auto;
   background-color: #161616;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   width: 90%;
 }
 
@@ -363,10 +363,8 @@ body {
 
 
 .forecastTable{
-  background-color: #161616;
-  border: 0.5rem solid #1f1f1f;
+  margin: 1rem;
 }
-
 
 .forecastTable * {
   display: flex;
@@ -378,6 +376,14 @@ body {
 }
 
 .dailyForecast{
+  background-color: #161616;
   display: flex;
-  background: #161616;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+  width: 90%;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  
 }

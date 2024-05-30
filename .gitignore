@@ -27,4 +27,4 @@ keys.js
 
 *.cache
 
-secrets.js
+src/secrets.js

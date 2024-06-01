@@ -66,48 +66,48 @@ const WeatherEnvironment = (props) => {
 
         
         
-        if(clouds.includes(props.condition)){
+        if(props.main_condition === "Clouds"){
             
             
             setBackground(rockBackground(season, dayNight).cloudy)
             setRockStatus(rockConditions.dry)
             setMessage(`"Your rock has taken up cloud watching, almost as boring as being a rock."`)
             setIsRaining(false)
-        } else if(rain.includes(props.condition)){
+        } else if(props.main_condition === "Rain"){
 
             
             setBackground(rockBackground(season, dayNight).rainy)
             setMessage(`"Your rock has taken to sitting in the rain, your rock is now wet. :/"`)
             setRockStatus(rockConditions.rain)
             setIsRaining(true)
-        } else if(clear.includes(props.condition)){
+        } else if(props.main_condition === "Drizzle"){
+
+            
+            setBackground(rockBackground(season, dayNight).rainy)
+            setMessage(`"Your rock has taken to sitting in the rain, your rock is now wet. :/"`)
+            setRockStatus(rockConditions.rain)
+            setIsRaining(true)
+        }  
+        else if(props.main_condition === "Clear"){
 
             setBackground(rockBackground(season, dayNight).clear)
             setRockStatus(rockConditions.dry)
             setMessage(`"It would be a shame to take this clear day for granite"`)
             setIsRaining(false)
-        } else if(fog.includes(props.condition)){
+        } else if(props.main_condition === "Atmosphere"){
 
             
             setBackground(rockBackground(season, dayNight).fog)
             setRockStatus(rockConditions.dry)
             setMessage(`"Your rock sits in the fog, alone..."`)
             setIsRaining(false)
-        } else if(snow.includes(props.condition)){
+        } else if(props.main_condition === "Snow"){
             setBackground(rockBackground(season, dayNight).cloudy)
             setRockStatus(rockConditions.snow)
             setMessage(`"Your rock fears of becoming the eye of a snowman"`)
             setIsSnowing(true)
             setIsRaining(false)
-        } else if(snowThunder.includes(props.condition)){
-            setBackground(rockBackground(season, dayNight).cloudy)
-            setIsSnowing(true)            
-            setRockStatus(rockConditions.lightning)
-            setMessage(`"Your rock has managed to get struck by lightning in the snow. That's quite something.`)
-            setIsRaining(false)
-            
-            
-        } else if(rainThunder.includes(props.condition)){
+        } else if(props.main_condition === "Thunderstorm"){
             
             setBackground(rockBackground(season, dayNight).rainy)
             setIsRaining(true)        

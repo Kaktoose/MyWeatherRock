@@ -11,6 +11,28 @@ const CurrentConditions = (props) => {
 
 
 
+    function getDirection() {
+        if (props.winddirection >= 337.5 || props.winddirection < 22.5) {
+            return "N"; // North
+        } else if (props.winddirection >= 22.5 && props.winddirection < 67.5) {
+            return "NE"; // North-East
+        } else if (props.winddirection >= 67.5 && props.winddirection < 112.5) {
+            return "E"; // East
+        } else if (props.winddirection >= 112.5 && props.winddirection < 157.5) {
+            return "SE"; // South-East
+        } else if (props.winddirection >= 157.5 && props.winddirection < 202.5) {
+            return "S"; // South
+        } else if (props.winddirection >= 202.5 && props.winddirection < 247.5) {
+            return "SW"; // South-West
+        } else if (props.winddirection >= 247.5 && props.winddirection < 292.5) {
+            return "W"; // West
+        } else if (props.winddirection >= 292.5 && props.winddirection < 337.5) {
+            return "NW"; // North-West
+        } else {
+            return "Invalid degree"; // This case should not happen if the input is correct
+        }
+    }
+    
 
 
 
@@ -77,7 +99,7 @@ const CurrentConditions = (props) => {
                                 </li>
                                 <li className="conditionLists">
                                     <ul><strong>Wind Direction</strong></ul>
-                                    <ul>{props.winddirection}</ul>
+                                    <ul>{getDirection()}</ul>
                                 </li>
 
 
@@ -167,7 +189,7 @@ const CurrentConditions = (props) => {
                                 </li>
                                 <li className="conditionLists">
                                     <ul><strong>Wind Direction</strong></ul>
-                                    <ul>{props.winddirection}</ul>
+                                    <ul>{getDirection()}</ul>
                                 </li>
 
 

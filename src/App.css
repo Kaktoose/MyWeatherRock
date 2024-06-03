@@ -135,6 +135,11 @@ nav {
 }
 
 
+
+body{
+  margin: 0;
+}
+
 .belowRockContainer {
   margin: auto;
   background-color: #161616;
@@ -198,7 +203,11 @@ td {
 
 }
 
-
+.creditLogos{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 .unitButton {
   margin: 0.5rem 0.5rem;

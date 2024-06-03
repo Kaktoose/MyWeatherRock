@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const PatchNotes = () => {
-    const newestVersion = 'V1.3.0';
+    const newestVersion = 'V2.0.0';
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -19,9 +19,9 @@ const PatchNotes = () => {
             {showModal &&
                 <div className="modal">
                     <div className="modal-content">
-                        <h1 style={{color: 'black'}}>Whats New In V1.3.0?</h1>
-                        <h2 style={{color: 'black'}}>-Added 3 Day Forecast</h2>
-                        <h2 style={{color: 'black'}}></h2>
+                        <h1 style={{color: 'black'}}>V2.0.0 is here!</h1>
+                        <h2 style={{color: 'black'}}>-Improved weather information</h2>
+                        <h2 style={{color: 'black'}}>-Shareable URLs</h2>
                         <button onClick={dismissPatchNotes}>Dismiss</button>
                     </div>
                 </div>

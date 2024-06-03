@@ -38,11 +38,15 @@ const WeatherEnvironment = (props) => {
     if(props.temp < -5){
         season = 'Winter'
     }
-    
-    
-    
 
-    
+
+    // useEffect(() => {
+    //     // Update the URL when inputValue changes
+        
+    //       window.history.pushState({}, '', `/${props.city}/`);
+        
+    //   }, [props.city]);
+       
     
     const [background, setBackground] = useState();
     const [rockStatus, setRockStatus] = useState()

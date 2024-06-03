@@ -8,7 +8,28 @@ const CurrentConditions = (props) => {
 
     const forecast = props.forecast
 
+    function copyToClipboard(){
+        const url = window.location.href;
+        
+        // Create a temporary input element
+        const tempInput = document.createElement('input');
+        tempInput.value = url;
+        document.body.appendChild(tempInput);
+        
+        // Select the text field
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+        
+        // Copy the text inside the text field
+        document.execCommand('copy');
+        
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+        
+        // Optional: Alert the user that the text has been copied
+        alert('Link copied to clipboard: ' + url);
 
+    }
 
 
     function getDirection() {
@@ -34,7 +55,14 @@ const CurrentConditions = (props) => {
     }
     
 
+    function capitalizeConditions(){
 
+
+        return props.currentConditions.replace(/\b\w/g, function(char, props) {
+            return char.toUpperCase();
+        });
+
+    }
 
 
 
@@ -61,7 +89,11 @@ const CurrentConditions = (props) => {
 
     }
 
-
+    useEffect(() => {
+        // Update the URL when inputValue changes
+        
+        window.history.pushState({}, '', `/${props.city}`);        
+      }, [props.city]);
 
     return (
         <>
@@ -73,10 +105,11 @@ const CurrentConditions = (props) => {
 
                         <button type="button" className="unitButton" onClick={setUnits}>°C/°F</button>
                         <button type="button" id="starButton" onClick={() => { localStorage.clear("defaultCity"); localStorage.setItem("defaultCity", props.city); alert(`Default location set to ${props.justcity}`) }} className="starButton"  ><span className="fa fa-star" style={{ "color": "aliceBlue", 'margin': "0" }}></span></button>
+                        <button type="button" id="starButton" onClick={copyToClipboard} className="starButton"  ><span className="fa fa-share" style={{ "color": "aliceBlue", 'margin': "0" }}></span></button>
+                        
 
 
-
-                        <h2 style={{ 'textAlign': 'center', "color": "aliceblue" }}>{props.currentConditions}</h2>
+                        <h2 style={{ 'textAlign': 'center', "color": "aliceblue" }}>{capitalizeConditions()}</h2>
                         <div className="belowRockContainerFlex">
 
 
@@ -164,6 +197,7 @@ const CurrentConditions = (props) => {
                     <div className="belowRockContainer">
                         <button type="button" className="unitButton" onClick={setUnits}>°C/°F</button>
                         <button type="button" className="unitButton"><span class="fa fa-star" style={{ "color": "aliceBlue", 'margin': "0" }}></span></button>
+                        <button type="button" id="starButton" onClick={copyToClipboard} className="starButton"  ><span className="fa fa-share" style={{ "color": "aliceBlue", 'margin': "0" }}></span></button>
 
 
                         <h2 style={{ 'textAlign': 'center', "color": "aliceblue" }}>{props.currentConditions}</h2>

@@ -16,6 +16,8 @@ import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
 import { getAnalytics, logEvent } from "firebase/analytics";
 
+
+
 const app = initializeApp(FIREBASE_CONFIG);
 const db = getFirestore(app);
 
@@ -114,6 +116,8 @@ function App() {
   const [dataState, setDataState] = useState();
   const [submittedState, setSubmittedState] = useState(false);
   const [alertState, setAlertState] = useState();
+  const [slashState, setSlashState] = useState("");
+
 
   const [errorState, setErrorState] = useState("No matching location found.");
   async function fetchCurrentWeather(e, inputValue) {
@@ -122,26 +126,28 @@ function App() {
       e.preventDefault();
     }
 
-    let fetchCurrentWeatherLocation = await fetch (`https://nominatim.openstreetmap.org/search?format=json&q=${inputValue}`)
-    
+    let fetchCurrentWeatherLocation = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${inputValue}`)
+
 
     let currentWeatherLocation = await fetchCurrentWeatherLocation.json();
 
-    let locationLat = currentWeatherLocation[0].lat;
-    let locationLon = currentWeatherLocation[0].lon;
-    
+    if(currentWeatherLocation[0]){
+
+      let locationLat = currentWeatherLocation[0].lat;
+      let locationLon = currentWeatherLocation[0].lon;
+  
     // let fetchCurrentWeatherData = await fetch(`https://api.weatherapi.com/v1/current.json?key=${keys.WEATHER_API}&q=${inputValue}&alerts=yes`)
-    
+
     let fetchCurrentWeatherData = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${locationLat}&lon=${locationLon}&units=metric&appid=${keys.OWM_API}`
     );
-    
-    let currentWeatherData = await fetchCurrentWeatherData.json();
-   
 
-   
-    if (currentWeatherData.weather) {
-      
+    let currentWeatherData = await fetchCurrentWeatherData.json();
+
+
+
+    if (currentWeatherData.weather[0]) {
+
       let fetchForecast = await fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=${keys.WEATHER_API}&q=${locationLat},${locationLon}&days=5&aqi=no&alerts=yes`
       );
@@ -150,26 +156,90 @@ function App() {
       setAlertState(forecast);
 
     } else {
-      setErrorState('womp');
+      setErrorState('No matching location found!');
       alert(errorState);
     }
+  } else{
+    setErrorState('No matching location found!');
+    alert(errorState);
   }
 
+  }
+
+  async function fetchCurrentWeatherWithoutEvent(inputValue) {
+    setSubmittedState(true);
+
+    let fetchCurrentWeatherLocation = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${inputValue}`)
+
+
+    let currentWeatherLocation = await fetchCurrentWeatherLocation.json();
+
+    if(currentWeatherLocation[0]){
+    let locationLat = currentWeatherLocation[0].lat;
+    let locationLon = currentWeatherLocation[0].lon;
+
+    // let fetchCurrentWeatherData = await fetch(`https://api.weatherapi.com/v1/current.json?key=${keys.WEATHER_API}&q=${inputValue}&alerts=yes`)
+
+    let fetchCurrentWeatherData = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${locationLat}&lon=${locationLon}&units=metric&appid=${keys.OWM_API}`
+    );
+
+    let currentWeatherData = await fetchCurrentWeatherData.json();
+
+
+
+    if (currentWeatherData.weather[0]) {
+
+      let fetchForecast = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${keys.WEATHER_API}&q=${locationLat},${locationLon}&days=5&aqi=no&alerts=yes`
+      );
+      let forecast = await fetchForecast.json();
+      setDataState(currentWeatherData)
+      setAlertState(forecast);
+      console.log(currentWeatherData)
+
+    } else {
+      setErrorState('No matching location found!');
+      alert(errorState);
+    }
+  } else{
+    setErrorState('No matching location found!');
+    alert(errorState);
+
+  }
+  }
+
+
+
+
+
   useEffect(() => {
+    const path = window.location.pathname;
+    const valueAfterSlash = path.substring(path.lastIndexOf('/') + 1);
     const defaultCity = localStorage.getItem("defaultCity");
-    if (defaultCity) {
+    if (defaultCity && valueAfterSlash === "") {
+      console.log(slashState, 'slashstate')
       fetchCurrentWeather(null, defaultCity); // Pass null for the event parameter
     }
   }, []);
 
   return (
     <>
+
+
       <body>
         <PatchNotes />
         <SiteHeader
+        fetchCurrentWeatherWithoutEvent={fetchCurrentWeatherWithoutEvent}
           fetchCurrentWeather={fetchCurrentWeather}
-          //datastate={dataState}
+          submittedState={submittedState}
+          setSubmittedState={setSubmittedState}
+          slashState={slashState}
+          setSlashState={setSlashState}
+
+        //datastate={dataState}
         />
+
         {alertState && alertState.alerts.alert[0]?.event[0] ? (
           <Warnings alerts={alertState.alerts.alert} />
         ) : (
@@ -212,8 +282,8 @@ function App() {
                 currentConditions={dataState.weather[0].description}
                 winddirection={dataState.wind.deg}
                 visibility={dataState.visibility / 1000}
-                tempF={Math.round(9/5 * dataState.main.temp + 32)}
-                feelslikeF={Math.round(9/5 * dataState.main.feels_like + 32)}
+                tempF={Math.round(9 / 5 * dataState.main.temp + 32)}
+                feelslikeF={Math.round(9 / 5 * dataState.main.feels_like + 32)}
                 windspeedM={Math.round(dataState.wind.speed * 0.621371)}
                 forecast={alertState}
               />

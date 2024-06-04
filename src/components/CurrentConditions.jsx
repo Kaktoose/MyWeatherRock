@@ -81,12 +81,27 @@ const CurrentConditions = (props) => {
     function dayOfWeek(epoch) {
 
         const date = new Date(epoch);
+        // Array of day names
 
-        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 
-        return days[date.getDay()]
+        var userTimezoneOffset = date.getTimezoneOffset() * 60000;
+        const newDate = new Date(date.getTime() + userTimezoneOffset);
 
+
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        
+        // Get the day of the week as a number (0-6)
+        const dayOfWeekNumber = newDate.getDay();
+        
+
+
+
+        // Get the name of the day
+        const dayOfWeekName = daysOfWeek[dayOfWeekNumber];
+        
+        console.log(epoch, date, dayOfWeekNumber, dayOfWeekName)
+        return dayOfWeekName;
     }
 
     useEffect(() => {
@@ -128,7 +143,7 @@ const CurrentConditions = (props) => {
                                 </li>
                                 <li className="conditionLists">
                                     <ul><strong>Wind Speed</strong></ul>
-                                    <ul>{props.windspeed}km/h</ul>
+                                    <ul>{props.windspeed} km/h</ul>
                                 </li>
                                 <li className="conditionLists">
                                     <ul><strong>Wind Direction</strong></ul>
@@ -176,7 +191,7 @@ const CurrentConditions = (props) => {
 
                         </div>
                         <div id="day2" className="forecastTable">
-                            <h2>{dayOfWeek(forecast.forecast.forecastday[2].date_epoch)}</h2>
+                        <h2>{dayOfWeek(forecast.forecast.forecastday[2].date)}</h2>
                             <img style={{ 'margin': 'auto' }} src={forecast.forecast.forecastday[2].day.condition.icon} />
 
                             <h2>{forecast.forecast.forecastday[2].day.avgtemp_c}°C</h2>
@@ -219,7 +234,7 @@ const CurrentConditions = (props) => {
                                 </li>
                                 <li className="conditionLists">
                                     <ul><strong>Wind Speed</strong></ul>
-                                    <ul>{props.windspeedM}mph</ul>
+                                    <ul>{props.windspeedM} mph</ul>
                                 </li>
                                 <li className="conditionLists">
                                     <ul><strong>Wind Direction</strong></ul>
@@ -263,7 +278,7 @@ const CurrentConditions = (props) => {
 
                             </div>
                             <div id="day2" className="forecastTable">
-                                <h2>{dayOfWeek(forecast.forecast.forecastday[2].date_epoch)}</h2>
+                                <h2>{dayOfWeek(forecast.forecast.forecastday[2].date)}</h2>
                                 <img style={{ 'margin': 'auto' }} src={forecast.forecast.forecastday[2].day.condition.icon} />
 
                                 <h2>{forecast.forecast.forecastday[2].day.avgtemp_f}°F</h2>
